@@ -1,0 +1,7 @@
+Docker usage
+
+# start a container
+docker run -d -it --name ps2homebrew --mount type=bind,source="/home/mikko/devaus",target=/devaus ghcr.io/ps2homebrew/ps2homebrew:main
+
+# get a shell to the container
+docker exec -it ps2homebrew /bin/bash

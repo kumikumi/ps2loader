@@ -1,7 +1,15 @@
 Docker usage
 
 # start a container
-docker run -d -it --name ps2homebrew --mount type=bind,source="/home/mikko/devaus",target=/devaus ghcr.io/ps2homebrew/ps2homebrew:main
+docker run -d -it --name ps2dev --mount type=bind,source="/home/mikko/devaus",target=/devaus ps2dev/ps2dev:latest
 
 # get a shell to the container
-docker exec -it ps2homebrew /bin/bash
+docker exec -it ps2homebrew /bin/sh
+# for the first time
+apk add build-base git bash patch wget zlib-dev ucl-dev
+
+# copying samples from container to machine
+cp -r /usr/local/ps2dev/ps2sdk/samples /devaus/ps2-samples
+
+# If pcsx2 installed with flatpak:
+flatpak run net.pcsx2.PCSX2 -elf /home/mikko/devaus/ps2loader/ps2loader.elf

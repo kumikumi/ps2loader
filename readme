@@ -6,7 +6,7 @@ docker run -d -it --name ps2dev --mount type=bind,source="/home/mikko/devaus",ta
 # get a shell to the container
 docker exec -it ps2homebrew /bin/sh
 # for the first time
-apk add build-base git bash patch wget zlib-dev ucl-dev
+apk add build-base git bash patch wget zlib-dev ucl-dev cdrkit
 
 # copying samples from container to machine
 cp -r /usr/local/ps2dev/ps2sdk/samples /devaus/ps2-samples

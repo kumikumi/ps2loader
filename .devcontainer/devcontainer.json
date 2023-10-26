@@ -1,0 +1,24 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// More info: https://containers.dev/guide/dockerfile
+{
+	"name": "PS2 Development Container",
+	"build": {
+        "dockerfile": "Dockerfile"
+    },
+	"runArgs": ["--name", "ps2_dev"],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "ms-vscode.makefile-tools"
+            ]
+        }
+    }
+}

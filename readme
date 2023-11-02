@@ -12,4 +12,5 @@ apk add build-base git bash patch wget zlib-dev ucl-dev cdrkit
 cp -r /usr/local/ps2dev/ps2sdk/samples /devaus/ps2-samples
 
 # If pcsx2 installed with flatpak:
-flatpak run net.pcsx2.PCSX2 -elf /home/mikko/devaus/ps2loader/ps2loader.elf
+flatpak run net.pcsx2.PCSX2 -elf /home/mikko/devaus/ps2loader/target/ps2loader.elf
+flatpak run net.pcsx2.PCSX2 /home/mikko/devaus/ps2loader/target/ps2loader.iso

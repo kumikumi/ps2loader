@@ -1,4 +1,4 @@
 *.o
 *.elf
 target/
-iso_files/DRIVERS/IOPRP221.IMG
+iso_files/DRIVERS/*

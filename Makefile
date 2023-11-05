@@ -1,5 +1,5 @@
 EE_BIN = ps2loader.elf
-EE_OBJS = ps2loader.o kmachine.o util.o
+EE_OBJS = ps2loader.o kmachine.o util.o cd.o
 EE_LIBS = -ldraw -lgraph -lmath3d -lpacket -ldma
 EE_CFLAGS = -Werror
 

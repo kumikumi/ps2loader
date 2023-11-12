@@ -6,6 +6,7 @@
 #include <util.h>
 #include <loadfile.h>
 #include "cd.h"
+#include "network.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
 	}
 	while (!SifIopSync())
 	{
-		//sio_printf("Syncing...\n");
+		// sio_printf("Syncing...\n");
 	}
 	sio_printf("Done\n");
 	SifInitRpc(0);
@@ -58,7 +59,31 @@ int main(int argc, char *argv[])
 		sio_printf("loading 989SND.IRX failed\n");
 		goto end;
 	}
-	end:
+
+	// Added: 3 drivers for ethernet connectivity
+
+	if (SifLoadModule("cdrom0:\\DRIVERS\\PS2DEV9.IRX;1", 0, NULL) < 0)
+	{
+		sio_printf("loading PS2DEV9.IRX failed\n");
+		goto end;
+	}
+	if (SifLoadModule("cdrom0:\\DRIVERS\\NETMAN.IRX;1", 0, NULL) < 0)
+	{
+		sio_printf("loading NETMAN.IRX failed\n");
+		goto end;
+	}
+	// Memo: loading smap may fail if no ethernet adapter is present, this is probably fine
+	if (SifLoadModule("cdrom0:\\DRIVERS\\SMAP.IRX;1", 0, NULL) < 0)
+	{
+		sio_printf("loading SMAP.IRX failed\n");
+		goto end;
+	}
+
+	if (!initNetworking()) {
+		goto end;
+	}
+
+end:
 	for (;;)
 	{
 		sio_printf("Sleep\n");

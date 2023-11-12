@@ -11,6 +11,31 @@ apk add build-base git bash patch wget zlib-dev ucl-dev cdrkit
 # copying samples from container to machine
 cp -r /usr/local/ps2dev/ps2sdk/samples /devaus/ps2-samples
 
+# Install pcsx2 daily or nightly build (non-flatpak to avoid network permission issues)
+
+# Todo: figure out networking between guest and host.
+# Currently the only tested way of networking was ping from a different physical machine
+# (Override dhcp ip to 192.168.2.6)
+
+# PCSX2 networking between guest and host (needs more work):
+#sudo ip tuntap add dev tap0 mode tap
+#sudo ip addr add 192.168.100.1/24 dev tap0
+#sudo ip link set dev tap0 up
+
+# PCSX2 Settings -> Network & HDD
+# Ethernet: Enabled
+# Device type: PCAP Bridged
+# Device: tap0
+# Intercept DHCP: Enable
+#  - PS2 Address: 192.168.100.2
+#  - Subnet mask: auto
+#  - Gateway address: 192.168.100.1
+# (dns: auto / not needed)
+
+
 # If pcsx2 installed with flatpak:
 flatpak run net.pcsx2.PCSX2 -elf /home/mikko/devaus/ps2loader/target/ps2loader.elf
 flatpak run net.pcsx2.PCSX2 /home/mikko/devaus/ps2loader/target/ps2loader.iso
+
+# PCSX2 network problems with flatpak:
+https://github.com/flathub/net.pcsx2.PCSX2#networking-support

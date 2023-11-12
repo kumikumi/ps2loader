@@ -1,7 +1,7 @@
 EE_BIN = ps2loader.elf
-EE_OBJS = ps2loader.o kmachine.o util.o cd.o
-EE_LIBS = -ldraw -lgraph -lmath3d -lpacket -ldma
-EE_CFLAGS = -Werror
+EE_OBJS = ps2loader.o kmachine.o util.o cd.o network.o
+EE_LIBS = -lnetman -lps2ip -lpacket -ldma
+EE_CFLAGS = -Werror -Wno-strict-aliasing
 
 all: build iso
 

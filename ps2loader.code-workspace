@@ -7,7 +7,7 @@
 			"path": "iop"
 		},
 		{
-			"path": "../usr/local/ps2dev/ps2sdk"
+			"path": "/usr/local/ps2dev/ps2sdk"
 		}
 	]
 }

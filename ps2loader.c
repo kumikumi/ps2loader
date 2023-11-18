@@ -79,6 +79,13 @@ int main(int argc, char *argv[])
 		goto end;
 	}
 
+	// Todo: make this work
+	// if (SifLoadModule("cdrom0:\\DRIVERS\\PS2LINK.IRX;1", 0, NULL) < 0)
+	// {
+	// 	sio_printf("loading PS2LINK.IRX failed\n");
+	// 	goto end;
+	// }
+
 	if (!initNetworking()) {
 		goto end;
 	}

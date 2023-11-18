@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "name": "PS2 IOP Development",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}

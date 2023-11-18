@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "iop"
+		},
+		{
+			"path": "../usr/local/ps2dev/ps2sdk"
+		}
+	]
+}

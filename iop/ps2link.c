@@ -26,6 +26,7 @@ IRX_ID(MODNAME, 1, 8);
 //   start threads & init rpc & filesys
 int _start(int argc, char **argv)
 {
+    printf("Hello from PS2LINK\n");
     FlushDcache();
     CpuEnableIntr(0);
 

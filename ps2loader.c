@@ -29,62 +29,29 @@ int main(int argc, char *argv[])
 	initCdResult = InitCD();
 	sio_printf("Init cd result: %d\n", initCdResult);
 
-	if (SifLoadModule("cdrom0:\\DRIVERS\\SIO2MAN.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading SIO2MAN.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\PADMAN.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading PADMAN.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\LIBSD.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading LIBSD.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\MCMAN.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading MCMAN.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\MCSERV.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading MCSERV.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\989SND.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading 989SND.IRX failed\n");
-		goto end;
-	}
+	#define LOAD_MODULE(MODULE) \
+    if (SifLoadModule("cdrom0:\\DRIVERS\\" MODULE ".IRX;1", 0, NULL) < 0) { \
+        sio_printf("loading " MODULE ".IRX failed\n"); \
+        goto end; \
+    }
 
-	// Added: 3 drivers for ethernet connectivity
+	LOAD_MODULE("SIO2MAN");
+	LOAD_MODULE("PADMAN");
+	LOAD_MODULE("LIBSD");
+	LOAD_MODULE("MCMAN");
+	LOAD_MODULE("MCSERV");
+	LOAD_MODULE("989SND");
 
-	if (SifLoadModule("cdrom0:\\DRIVERS\\PS2DEV9.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading PS2DEV9.IRX failed\n");
-		goto end;
-	}
-	if (SifLoadModule("cdrom0:\\DRIVERS\\NETMAN.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading NETMAN.IRX failed\n");
-		goto end;
-	}
+	// Added: drivers for ethernet connectivity, ps2link
+	LOAD_MODULE("POWEROFF");
+	LOAD_MODULE("PS2DEV9");
+	LOAD_MODULE("NETMAN");
 	// Memo: loading smap may fail if no ethernet adapter is present, this is probably fine
-	if (SifLoadModule("cdrom0:\\DRIVERS\\SMAP.IRX;1", 0, NULL) < 0)
-	{
-		sio_printf("loading SMAP.IRX failed\n");
-		goto end;
-	}
-
-	// Todo: make this work
-	// if (SifLoadModule("cdrom0:\\DRIVERS\\PS2LINK.IRX;1", 0, NULL) < 0)
-	// {
-	// 	sio_printf("loading PS2LINK.IRX failed\n");
-	// 	goto end;
-	// }
+	LOAD_MODULE("SMAP");
+	LOAD_MODULE("PS2IP_NM");
+	LOAD_MODULE("UDPTTY");
+	LOAD_MODULE("IOPTRAP");
+	LOAD_MODULE("PS2LINK");
 
 	if (!initNetworking()) {
 		goto end;
